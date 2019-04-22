@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Room 1</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/script.js"></script>
+</head>
+<body onload="connect(1);">
+	<h1>Room number 1</h1>
+
+	<button onclick="sendMessageTrue(1)"  class="text" style = "font-size:40px">TurnOn</button>
+	<button onclick="sendMessageFalse(1)" class="text" style = "font-size:40px">TurnOff</button>
+	<button onclick="window.location.href='/index.html'" style = "font-size:40px">Exit</button>
+
+	<div class="text22"></div>
+
+
+</body>
+</html>
