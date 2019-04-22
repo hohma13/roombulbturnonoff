@@ -22,11 +22,6 @@ function connect(room) {
 }
 
 function draw(side, text) {
-switch (text){
-    case ("true1"):
-
-        break;
-}
 
 	if (text == "true1") {
 
