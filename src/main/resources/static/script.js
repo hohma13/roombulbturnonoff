@@ -22,21 +22,48 @@ function connect(room) {
 }
 
 function draw(side, text) {
+switch (text){
+    case ("true1"):
 
-	if (text == "true") {
+        break;
+}
+
+	if (text == "true1") {
+
 		var bulb = "Bulb is turn ON"
 		var $message;
-		$message =$('.text22').text(bulb);
+		$message =$(room1).text(bulb);
+
 		return setTimeout(function () {
 			return $message.addClass('appeared');
 		}, 0);
 
 	}
-	else if (text == "false") {
+	else if (text == "false1") {
 		var bulb = "Bulb is turn OFF"
 		var $message;
-		$message =$('.text22').text(bulb);
+        $message =$(room1).text(bulb);
 		return setTimeout(function () {
+			return $message.addClass('appeared');
+		}, 0);
+
+	}
+	else if (text == "true2") {
+		var bulb = "Bulb is turn ON"
+		var $message;
+		$message =$(room2).text(bulb);
+
+		return setTimeout(function () {
+			return $message.addClass('appeared');
+		}, 0);
+
+	}
+	else if (text == "false2") {
+		var bulb = "Bulb is turn OFF"
+		var $message;
+        $message =$(room2).text(bulb);
+
+        return setTimeout(function () {
 			return $message.addClass('appeared');
 		}, 0);
 

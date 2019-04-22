@@ -33,10 +33,10 @@ public class RoomController {
 		}
 		switch (message.getMessage()){
 			case ("1"):
-				message.setMessage(abc);
+				message.setMessage(abc+"1");
 				break;
 			case ("2"):
-				message.setMessage(abc);
+				message.setMessage(abc+"2");
 				break;
 			case("true1"):
 				confpropWrite(message,property,1,"true");
@@ -62,7 +62,7 @@ public class RoomController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		message.setMessage(bulbstatus);
+		message.setMessage(bulbstatus+num);
 	}
 
 }
