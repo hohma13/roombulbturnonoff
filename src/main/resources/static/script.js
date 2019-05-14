@@ -1,4 +1,4 @@
-function connect(room) {
+function connect(roomNum) {
 	var socket = new SockJS('/chat-messaging');
 	stompClient = Stomp.over(socket);
 
@@ -9,79 +9,51 @@ function connect(room) {
 			draw("left", data.message);
 
 		});
-		if (room == 1){
-			stompClient.send("/app/message", {}, JSON.stringify({'message': "1"}));
-		}
-		else if (room == 2){
-			stompClient.send("/app/message", {}, JSON.stringify({'message': "2"}));
-		}
-
+		stompClient.send("/app/message", {}, JSON.stringify({'message': roomNum + " bulb GET"}));
 
 	});
 
 }
 
 function draw(side, text) {
+var roomnum = window.location.pathname;
+roomnum = roomnum.substring(1,6);
 
-	if (text == "true1") {
-
-		var bulb = "Bulb is turn ON"
-		var $message;
-		$message =$(room1).text(bulb);
-
-		return setTimeout(function () {
-			return $message.addClass('appeared');
-		}, 0);
-
+	if (text == "true") {
+		turnOn(roomnum);
 	}
-	else if (text == "false1") {
-		var bulb = "Bulb is turn OFF"
-		var $message;
-        $message =$(room1).text(bulb);
-		return setTimeout(function () {
-			return $message.addClass('appeared');
-		}, 0);
-
+	else if (text == "false") {
+		turnOff(roomnum);
 	}
-	else if (text == "true2") {
-		var bulb = "Bulb is turn ON"
-		var $message;
-		$message =$(room2).text(bulb);
+}
 
-		return setTimeout(function () {
-			return $message.addClass('appeared');
-		}, 0);
+function turnOn(roomnum){
 
-	}
-	else if (text == "false2") {
-		var bulb = "Bulb is turn OFF"
-		var $message;
-        $message =$(room2).text(bulb);
+	var bulb = "Bulb is turn ON"
+	var $message;
+	$message =$(roomnum).text(bulb);
 
-        return setTimeout(function () {
-			return $message.addClass('appeared');
-		}, 0);
+	return setTimeout(function () {
+		return $message.addClass('appeared');
+	}, 0);
+}
 
-	}
+function turnOff(roomnum){
+	var bulb = "Bulb is turn OFF"
+	var $message;
+	$message =$(roomnum).text(bulb);
+	return setTimeout(function () {
+		return $message.addClass('appeared');
+	}, 0);
 }
 
 function sendMessageTrue(num){
-	if (num == 1){
-		stompClient.send("/app/message", {}, JSON.stringify({'message': "true1"}));
-	}
-	else if (num ==2){
-		stompClient.send("/app/message", {}, JSON.stringify({'message': "true2"}));
-	}
-
+		stompClient.send("/app/message", {}, JSON.stringify({'message': num + " true SET"}));
 }
 
 function sendMessageFalse(num){
-	if (num == 1){
-		stompClient.send("/app/message", {}, JSON.stringify({'message': "false1"}));
-	}
-	else if (num ==2){
-		stompClient.send("/app/message", {}, JSON.stringify({'message': "false2"}));
-	}
+
+		stompClient.send("/app/message", {}, JSON.stringify({'message': num + " false SET"}));
 
 
 }
