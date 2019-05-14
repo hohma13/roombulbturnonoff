@@ -8,7 +8,7 @@ import java.util.Properties;
 public class InputOutputController {
 
     static final String ROOM_PROPERTIES = "bulb.status.room";
-    static final String BULB_STATUS_PATH = "src/main/resources/config.properties";
+    static final String BULB_STATUS_PATH = "src/main/resources/room.properties";
 
     private FileInputStream in;
     private FileOutputStream out;
@@ -39,8 +39,13 @@ public class InputOutputController {
     }
 
     public String setBulbStatus() throws IOException {
-        out = new FileOutputStream(BULB_STATUS_PATH);
+
+        in = new FileInputStream(BULB_STATUS_PATH);
         bulbsProperties = new Properties();
+        bulbsProperties.load(in);
+        in.close();
+
+        out = new FileOutputStream(BULB_STATUS_PATH);
         bulbsProperties.setProperty(ROOM_PROPERTIES+roomNum, roomMsg);
         bulbsProperties.store(out, null);
         out.close();

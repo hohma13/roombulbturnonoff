@@ -16,32 +16,34 @@ function connect(roomNum) {
 }
 
 function draw(side, text) {
-var roomnum = window.location.pathname;
-roomnum = roomnum.substring(1,6);
+var roomGet = window.location.pathname;
+roomGet = roomGet.substring(1,6);
 
 	if (text == "true") {
-		turnOn(roomnum);
+		turnOn(roomGet);
 	}
 	else if (text == "false") {
-		turnOff(roomnum);
+		turnOff(roomGet);
 	}
 }
 
-function turnOn(roomnum){
+function turnOn(room){
 
 	var bulb = "Bulb is turn ON"
 	var $message;
-	$message =$(roomnum).text(bulb);
+	var roomText = "'div."+room+"'";
+	$message =$(roomText).text(bulb);
 
 	return setTimeout(function () {
 		return $message.addClass('appeared');
 	}, 0);
 }
 
-function turnOff(roomnum){
+function turnOff(room){
 	var bulb = "Bulb is turn OFF"
 	var $message;
-	$message =$(roomnum).text(bulb);
+	var roomText = "'div."+room+"'";
+	$message =$(roomText).text(bulb);
 	return setTimeout(function () {
 		return $message.addClass('appeared');
 	}, 0);

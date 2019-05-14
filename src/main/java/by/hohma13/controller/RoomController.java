@@ -11,8 +11,8 @@ import java.io.IOException;
 @Controller
 public class RoomController {
 
-	private static final String ROOM_STATUS_GET = "GET";
-	private static final String ROOM_STATUS_SET = "SET";
+	private static final String ROOM_REQUEST_GET = "GET";
+	private static final String ROOM_REQUEST_SET = "SET";
 
 	private String roomNumber;
 	private String roomStatus;
@@ -21,19 +21,17 @@ public class RoomController {
 	@MessageMapping("/message")
 	@SendTo("/chat/messages")
 	public Message getMessages(Message message) throws IOException {
-		//roomchoose(message, message.getMessage());
+
 		String [] roomMsg = message.getMessage();
 		roomNumber = roomMsg[0];
 		roomStatus = roomMsg[1];
 		roomRequest = roomMsg[2];
 
-
-		if (roomRequest.equals(ROOM_STATUS_GET)){
+		if (roomRequest.equals(ROOM_REQUEST_GET)){
 			InputOutputController bulbOnOff = new InputOutputController(roomNumber);
-			String abc = bulbOnOff.getBulbStatus();
-			message.setMessage(abc);
+			message.setMessage(bulbOnOff.getBulbStatus());
 		}
-		else if (roomRequest.equals(ROOM_STATUS_SET)){
+		else if (roomRequest.equals(ROOM_REQUEST_SET)){
 			InputOutputController bulbOnOff = new InputOutputController(roomNumber,roomStatus);
 			message.setMessage(bulbOnOff.setBulbStatus());
 		}
@@ -47,7 +45,7 @@ public class RoomController {
 //		String abc = null;
 //		String roomprop =  "bulb.status"+roommun;
 //		try {
-//			fis = new FileInputStream("src/main/resources/config.properties");
+//			fis = new FileInputStream("src/main/resources/room.properties");
 //			property.load(fis);
 //			abc = property.getProperty(roomprop);
 //
@@ -79,7 +77,7 @@ public class RoomController {
 //
 //	private void confpropWrite(Message message, Properties property, int num, String bulbstatus){
 //		try {
-//			FileOutputStream file = new FileOutputStream("src/main/resources/config.properties");
+//			FileOutputStream file = new FileOutputStream("src/main/resources/room.properties");
 //			property.setProperty("bulb.status"+num, bulbstatus);
 //			property.store(file, null);
 //		} catch (IOException e) {
