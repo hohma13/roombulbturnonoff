@@ -29,9 +29,9 @@ roomGet = roomGet.substring(1,6);
 
 function turnOn(room){
 
-	var bulb = "Bulb is turn ON"
+	var bulb = "Bulb is turn ON";
 	var $message;
-	var roomText = "'div."+room+"'";
+	var roomText = "div."+room;
 	$message =$(roomText).text(bulb);
 
 	return setTimeout(function () {
@@ -40,9 +40,9 @@ function turnOn(room){
 }
 
 function turnOff(room){
-	var bulb = "Bulb is turn OFF"
+	var bulb = "Bulb is turn OFF";
 	var $message;
-	var roomText = "'div."+room+"'";
+	var roomText = "div."+room;
 	$message =$(roomText).text(bulb);
 	return setTimeout(function () {
 		return $message.addClass('appeared');
